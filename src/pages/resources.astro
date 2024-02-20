@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import H1 from '../components/typography/H1.astro';
+import H2 from '../components/typography/H2.astro';
+import Link from '../components/typography/Link.astro';
+---
+
+<Layout title="Useful resources" description="Useful resource, tutorials, podcasts etc.">
+  <H1>Useful resources</H1>
+  <section class="my-4">
+    <H2>Podcasts</H2>
+    <ul class="my-4 list-disc">
+      <li>
+        Syntax podcast hosted by <b>Wes Bos</b> and <b>Scott Tolinski</b>
+        <Link href="https://syntax.fm/" external> [https://syntax.fm/] </Link>
+        Some of favorite episodes: (TODO: add links)
+      </li>
+    </ul>
+  </section>
+  <section class="my-4">
+    <H2>Tutorials</H2>
+    <ul class="my-4 list-disc">
+      <li>
+        WebRTC tutorials by <b>Seungmin Lee</b>
+        <Link href="https://millo-l.github.io/WebRTC-implementation-method-Mesh-SFU-MCU/" external>
+          [https://millo-l.github.io/WebRTC-implementation...]
+        </Link>
+        It's a great starting point for learning WebRTC. I used it as a reference for my own PoC audio
+        chat that I had to create for a client.
+      </li>
+    </ul>
+  </section>
+  <section class="my-4">
+    <H2>Code style, development process</H2>
+    <ul class="my-4 list-disc">
+      <li>
+        Conventional commit messages
+        <Link href="https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13" external>
+          [https://gist.github.com/qoomon/...]
+        </Link>
+      </li>
+    </ul>
+  </section>
+</Layout>
