@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import H1 from '../components/typography/H1.astro';
+import H2 from '../components/typography/H2.astro';
+import Card from '../components/Card.astro';
+import type { MarkdownInstance } from 'astro';
+
+interface Frontmatter {
+  section: string;
+  title: string;
+  description?: string;
+}
+
+const allPosts = await Astro.glob<Frontmatter>('../pages/codility/*.md');
+
+const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatter>>>>(
+  (acc, post) => {
+    const section = post.frontmatter.section;
+    if (!(section in acc)) {
+      acc[section] = [];
+    }
+    acc[section].push(post);
+    return acc;
+  },
+  {}
+);
+---
+
+<Layout
+  title="Javascript Solutions to Codility Lessons"
+  description="Javascript Solutions to Codility challenges"
+>
+  <H1>Javascript Solutions to Codility challenges</H1>
+
+  {
+    Object.entries(sections).map(([section, posts]) => (
+      <section class="my-4 grid grid-cols-1">
+        <H2>{section}</H2>
+        <div class="mt-4 grid grid-cols-4 gap-4">
+          {posts.map((post) => (
+            <Card
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              url={post.url}
+            />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</Layout>
