@@ -1,0 +1,42 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "standard-with-typescript",
+        "plugin:astro/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+        "astro",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+    },
+    "overrides": [
+          // Define the configuration for `.astro` file.
+        {
+            "files": ["*.astro"],
+            "parser": "astro-eslint-parser",
+            // "parserOptions": {
+            //     "parser": "@typescript-eslint/parser",
+            //     "extraFileExtensions": [".astro"]
+            // },
+            "rules": {
+                // override/add rules settings here, such as:
+                // "astro/no-set-html-directive": "error"
+            }
+        }
+    ],
+    "ignorePatterns": [
+        "node_modules",
+        "build",
+        "dist",
+        "public"
+      ]
+}

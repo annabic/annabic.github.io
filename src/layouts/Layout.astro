@@ -2,8 +2,8 @@
 import Header from './Header.astro';
 
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
 }
 
 const { title, description } = Astro.props;
@@ -11,21 +11,19 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="min-h-screen">
-		<Header />
-		<div class="p-4 max-w-screen-xl m-auto min-h-screen flex flex-col flex-1">
-			<slot />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen">
+    <Header />
+    <div class="m-auto flex min-h-screen max-w-screen-xl flex-1 flex-col p-4">
+      <slot />
+    </div>
+  </body>
 </html>
-<style>
-
-</style>
+<style></style>
