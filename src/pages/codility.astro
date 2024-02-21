@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import H1 from "../components/typography/H1.astro";
-import Card from "../components/Card.astro";
-// import type { MarkdownInstance } from "astro";
+import CodilityPosts from "../components/client/CodilityPosts";
+import type { MarkdownInstance } from "astro";
 
 interface Frontmatter {
   section: string;
@@ -12,19 +12,17 @@ interface Frontmatter {
 
 const allPosts = await Astro.glob<Frontmatter>("../pages/codility/*.md");
 
-// const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatter>>>>(
-//   (acc, post) => {
-//     const section = post.frontmatter.section;
-//     if (!(section in acc)) {
-//       acc[section] = [];
-//     }
-//     acc[section].push(post);
-//     return acc;
-//   },
-//   {}
-// );
-// const currentSection = Astro.params?.section ? decodeURIComponent(Astro.params.section) : null;
-// const filteredPosts = !currentSection ? allPosts : sections[currentSection] ?? [];
+const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatter>>>>(
+  (acc, post) => {
+    const section = post.frontmatter.section;
+    if (!(section in acc)) {
+      acc[section] = [];
+    }
+    acc[section].push(post);
+    return acc;
+  },
+  {}
+);
 ---
 
 <Layout
@@ -32,27 +30,6 @@ const allPosts = await Astro.glob<Frontmatter>("../pages/codility/*.md");
   description="Javascript Solutions to Codility challenges"
 >
   <H1>Javascript Solutions to Codility challenges</H1>
-  <!-- <div class="filter-container space-x-2">
-    {
-      Object.keys(sections).map((section) => (
-        <a
-          href={`?section=${section}`}
-          class={`inline-block rounded-full px-3 py-1 text-sm font-semibold text-white ${currentSection === section ? "bg-lime-700" : "border border-lime-700 text-lime-700"} hover:bg-lime-800`}
-        >
-          {section}
-        </a>
-      ))
-    }
-    <a
-      href="/"
-      class={`inline-block px-3 py-1 text-sm font-semibold text-white ${!currentSection ? "bg-lime-700" : "border border-lime-700 text-lime-700"} rounded-full hover:bg-lime-800`}
-    >
-      All
-    </a>
-  </div> -->
 
-  <!-- Display filtered posts by section -->
-  <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-    {allPosts.map((post) => <Card {...post.frontmatter} url={post.url} />)}
-  </div>
+  <CodilityPosts posts={allPosts} sections={sections} client:load />
 </Layout>

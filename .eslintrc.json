@@ -17,20 +17,39 @@
         "sourceType": "module"
     },
     "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
     },
     "overrides": [
           // Define the configuration for `.astro` file.
         {
             "files": ["*.astro"],
             "parser": "astro-eslint-parser",
-            // "parserOptions": {
-            //     "parser": "@typescript-eslint/parser",
-            //     "extraFileExtensions": [".astro"]
-            // },
+            "parserOptions": {
+                "parser": "@typescript-eslint/parser",
+                "extraFileExtensions": [".astro"]
+            },
             "rules": {
                 // override/add rules settings here, such as:
                 // "astro/no-set-html-directive": "error"
-                "@typescript-eslint/strict-boolean-expressions": "off"
+                "react/jsx-filename-extension": [1, { "extensions": [".astro"] }], // Accept jsx in astro files
+                "react/destructuring-assignment": "off", // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
+                "react/require-default-props": "off", // Allow non-defined react props as undefined
+                "@typescript-eslint/comma-dangle": "off", // Avoid conflict rule between Eslint and Prettier
+                "@typescript-eslint/consistent-type-imports": "error" // Ensure `import type` is used when it's necessary
+            }
+        },
+        {
+            "files": ["*.tsx"],
+            "plugins": [
+                "react",
+                "@typescript-eslint"
+            ],
+            "parser": "@typescript-eslint/parser",
+            "parserOptions": {
+                "ecmaFeatures": {
+                    "jsx": true
+                }
             }
         }
     ],

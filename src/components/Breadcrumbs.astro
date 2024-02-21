@@ -3,10 +3,10 @@ const pathname = Astro.url.pathname;
 
 // Function to split the pathname and create breadcrumb segments
 const createBreadcrumbs = (path: string) => {
-  const segments = path.split('/').filter(Boolean);
+  const segments = path.split("/").filter(Boolean);
   return segments.map((segment, index) => ({
-    name: segment.replace(/-/g, ' ').toUpperCase(),
-    url: '/' + segments.slice(0, index + 1).join('/')
+    name: segment.replace(/-/g, " ").toUpperCase(),
+    url: "/" + segments.slice(0, index + 1).join("/")
   }));
 };
 
@@ -15,19 +15,19 @@ const breadcrumbs = createBreadcrumbs(pathname);
 
 <nav aria-label="breadcrumbs" class="text-gray-500">
   <ol class="flex">
-    {breadcrumbs.map((breadcrumb, index) => (
-      <li>
-        <a
-          href={breadcrumb.url}
-          class={`text-sm ${index !== breadcrumbs.length - 1 ? 'text-lime-600 hover:text-lime-700' : 'text-gray-500'}`}
-          aria-current={index === breadcrumbs.length - 1 ? 'page' : undefined}
-        >
-          {breadcrumb.name}
-        </a>
-        {index !== breadcrumbs.length - 1 && (
-          <span class="mx-2">/</span>
-        )}
-      </li>
-    ))}
+    {
+      breadcrumbs.map((breadcrumb, index) => (
+        <li>
+          <a
+            href={breadcrumb.url}
+            class={`text-sm ${index !== breadcrumbs.length - 1 ? "text-lime-600 hover:text-lime-700" : "text-gray-500"}`}
+            aria-current={index === breadcrumbs.length - 1 ? "page" : undefined}
+          >
+            {breadcrumb.name}
+          </a>
+          {index !== breadcrumbs.length - 1 && <span class="mx-2">/</span>}
+        </li>
+      ))
+    }
   </ol>
 </nav>
