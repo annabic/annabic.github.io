@@ -3,6 +3,7 @@
     "assert": {
       "preset": "lighthouse:no-pwa",
       "assertions": {
+        "csp-xss": ["warn", { "minScore": 1 }],
         "categories:accessibility": ["warn", { "minScore": 1 }]
       }
     },
