@@ -1,9 +1,9 @@
 {
   "ci": {
     "assert": {
-      "preset": "lighthouse:no-pwa",
       "assertions": {
-        "categories:accessibility": ["warn", { "minScore": 1 }]
+        "categories:accessibility": ["warn", { "minScore": 1 }],
+        "categories:performance": ["warn", { "minScore": 1 }]
       }
     },
       "collect": {
