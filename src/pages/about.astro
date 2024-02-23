@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import H1 from "../components/typography/H1.astro";
+
+const pageTitle = "About Me";
+const description = "I am a front-end developer based in Latvia";
+
+const identity = {
+  fullName: "Anna Bicevska",
+  country: "Latvia",
+  occupation: "Front-end developer",
+  hobbies: ["bouldering", "travelling", "family history research"]
+};
+
+const skills = ["React", "TypeScript", "Node.js", "Redux", "Zustand"];
+---
+
+<Layout title={pageTitle} description={description}>
+  <H1>{pageTitle}</H1>
+
+  <div class="prose mt-4 space-y-4">
+    <p class="text-xl font-bold underline">Here are a few facts about me:</p>
+    <ul class="list-disc space-y-1">
+      <li>My name is {identity.fullName}.</li>
+      <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+      <li>
+        My hobbies include: <span class="font-medium">{identity.hobbies[0]}</span>, <span
+          class="font-medium">{identity.hobbies[1]}</span
+        > and <span class="font-medium">{identity.hobbies[2]}</span>.
+      </li>
+    </ul>
+    <p class="text-xl font-bold underline">My skills are:</p>
+  </div>
+
+  <ul class="list-inside space-y-1">
+    {skills.map((skill) => <li class="text-lime-600">{skill}</li>)}
+  </ul>
+</Layout>
