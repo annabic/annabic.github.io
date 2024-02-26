@@ -3,11 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import H1 from "../components/typography/H1.astro";
 import Card from "../components/Card.astro";
 import Tags from "../components/Tags.astro";
-import type { Frontmatter } from "../types";
-import type { MarkdownInstance } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  posts: Array<MarkdownInstance<Frontmatter>>;
+  posts: Array<CollectionEntry<"codility">>;
   tags: string[];
 }
 
@@ -25,6 +24,6 @@ const { posts, tags } = Astro.props;
   <Tags tags={tags} withAll />
 
   <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-    {posts.map((post) => <Card {...post.frontmatter} url={post.url} />)}
+    {posts.map((post) => <Card {...post.data} url={`/codility/${post.slug}`} />)}
   </div>
 </Layout>
