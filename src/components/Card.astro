@@ -9,7 +9,9 @@ interface Props {
 const { title, section, url } = Astro.props;
 ---
 
-<div class="mb-5 max-w-sm rounded-lg border border-gray-200 bg-white shadow-md">
+<div
+  class="mb-5 max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-950 dark:bg-lime-950"
+>
   <a href={url} class="max-h-30 min-h-20 rounded-t-lg bg-lime-200">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,12 +34,14 @@ const { title, section, url } = Astro.props;
   </a>
   <div class="p-5">
     <a href={url}>
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{title}</h5>
+      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-lime-50">
+        {title}
+      </h5>
     </a>
-    <p class="mb-3 font-bold text-gray-700">{section}</p>
-    <p class="mb-3 font-normal text-gray-700">{description ?? ""}</p>
+    <p class="mb-3 font-bold text-gray-700 dark:text-lime-200">{section}</p>
+    <p class="mb-3 font-normal text-gray-700 dark:text-white">{description ?? ""}</p>
     <a
-      class="inline-flex items-center rounded-lg bg-lime-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-lime-800 focus:ring-4 focus:ring-lime-200"
+      class="inline-flex items-center rounded-lg bg-lime-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-lime-800 focus:ring-4 focus:ring-lime-200 dark:bg-lime-300 dark:text-black dark:hover:bg-lime-400 dark:focus:ring-lime-500"
       href={url}
     >
       Read more
