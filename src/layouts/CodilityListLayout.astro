@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import H1 from "../components/typography/H1.astro";
+import Card from "../components/Card.astro";
+import Tags from "../components/Tags.astro";
+import type { Frontmatter } from "../types";
+import type { MarkdownInstance } from "astro";
+
+interface Props {
+  posts: Array<MarkdownInstance<Frontmatter>>;
+  tags: string[];
+}
+
+const { posts, tags } = Astro.props;
+---
+
+<Layout
+  title="Javascript Solutions to Codility Lessons"
+  description="Javascript Solutions to Codility challenges"
+>
+  <H1>Javascript Solutions to Codility challenges</H1>
+
+  <!-- <CodilityPosts posts={allPosts} sections={sections} client:load /> -->
+
+  <Tags tags={tags} withAll />
+
+  <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+    {posts.map((post) => <Card {...post.frontmatter} url={post.url} />)}
+  </div>
+</Layout>

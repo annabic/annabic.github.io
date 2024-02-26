@@ -3,6 +3,7 @@ import Layout from "./Layout.astro";
 import H1 from "../components/typography/H1.astro";
 import H2 from "../components/typography/H2.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Tags from "../components/Tags.astro";
 
 const { frontmatter } = Astro.props;
 ---
@@ -11,6 +12,7 @@ const { frontmatter } = Astro.props;
   <Breadcrumbs />
   <H1 class="my-4">{frontmatter.title}</H1>
   <H2>{frontmatter.section}</H2>
+  <Tags tags={frontmatter.tags} />
   <div
     class="prose mt-4
   prose-headings:underline prose-h1:text-xl
