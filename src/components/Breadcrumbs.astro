@@ -20,7 +20,7 @@ const breadcrumbs = createBreadcrumbs(pathname);
         <li>
           <a
             href={breadcrumb.url}
-            class={`text-sm ${index !== breadcrumbs.length - 1 ? "text-lime-600 hover:text-lime-700" : "text-gray-500"}`}
+            class={`text-sm ${index !== breadcrumbs.length - 1 ? "text-lime-600 hover:text-lime-700 dark:text-lime-400 hover:dark:text-lime-200" : "text-gray-500 dark:text-gray-300"}`}
             aria-current={index === breadcrumbs.length - 1 ? "page" : undefined}
           >
             {breadcrumb.name}
