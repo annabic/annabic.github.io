@@ -1,0 +1,35 @@
+---
+interface Props {
+  tags: string[];
+  withAll?: boolean;
+}
+
+const pathname = Astro.url.pathname;
+const isAllPage = pathname === "/codility/";
+
+const { tags, withAll } = Astro.props;
+---
+
+<div class="filter-container mt-4 space-x-2">
+  {
+    withAll && (
+      <a
+        href="/codility/"
+        class={`inline-block cursor-pointer px-3 py-1 text-sm font-semibold ${isAllPage ? "bg-lime-700 text-white" : "border border-lime-700 text-lime-700"} rounded-full hover:bg-lime-800 hover:text-white`}
+      >
+        All
+      </a>
+    )
+  }
+
+  {
+    tags.map((tag) => (
+      <a
+        href={`/codility/tags/${tag}`}
+        class={`${pathname === `/codility/tags/${tag}` ? "bg-lime-700 text-white" : ""} inline-block cursor-pointer rounded-full border border-lime-700 px-3 py-1 text-sm font-semibold text-lime-700 hover:bg-lime-800 hover:text-white disabled:cursor-default disabled:hover:bg-lime-700`}
+      >
+        {tag}
+      </a>
+    ))
+  }
+</div>

@@ -1,9 +1,8 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
-import Card from "../../../components/Card.astro";
+import CodilityListLayout from "../../../layouts/CodilityListLayout.astro";
 import type { Frontmatter } from "../../../types";
 import type {
-  InferGetStaticParamsType,
+  // InferGetStaticParamsType,
   InferGetStaticPropsType,
   GetStaticPaths,
   MarkdownInstance
@@ -17,24 +16,16 @@ export const getStaticPaths = (async () => {
     const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
     return {
       params: { tag },
-      props: { posts: filteredPosts }
+      props: { posts: filteredPosts, tags: uniqueTags }
     };
   });
 }) satisfies GetStaticPaths;
 
-type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+// type Params = InferGetStaticParamsType<typeof getStaticPaths>;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { posts } = Astro.props;
-const { tag } = Astro.params as Params;
+const { posts, tags } = Astro.props;
+// const { tag } = Astro.params as Params;
 ---
 
-<Layout title="Codility Lessons" description="Codility Lessons">
-  <h1>Filtered by {tag}</h1>
-
-  <!-- TODO: refactor common components, add filters -->
-
-  <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-    {posts.map((post) => <Card {...post.frontmatter} url={post.url} />)}
-  </div>
-</Layout>
+<CodilityListLayout tags={tags} posts={posts} />
