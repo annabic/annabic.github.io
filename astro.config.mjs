@@ -14,10 +14,10 @@ export default defineConfig({
       theme: "dracula",
       // Alternatively, provide multiple themes
       // https://shikiji.netlify.app/guide/dual-themes#light-dark-dual-themes
-      experimentalThemes: {
-        light: "github-light",
-        dark: "github-dark"
-      },
+      // experimentalThemes: {
+      // light: "github-light",
+      // dark: "github-dark"
+      // },
       // Add custom languages
       // Note: Shiki has countless langs built-in, including .astro!
       // https://github.com/shikijs/shiki/blob/main/docs/languages.md
