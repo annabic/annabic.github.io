@@ -14,7 +14,8 @@ const codilityCollection = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     section: z.string(),
-    tags: z.array(z.string())
+    tags: z.array(z.string()),
+    date: z.date()
   })
 });
 
