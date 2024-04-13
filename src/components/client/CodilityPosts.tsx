@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import type { MarkdownInstance } from "astro";
 import Card from "./Card";
-
-interface Frontmatter {
-  section: string;
-  title: string;
-  description?: string;
-}
+import type { Frontmatter } from "../../types";
 
 interface Props {
   posts: Array<MarkdownInstance<Frontmatter>>;

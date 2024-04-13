@@ -1,28 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import H1 from "../components/typography/H1.astro";
-import CodilityPosts from "../components/client/CodilityPosts";
-import type { MarkdownInstance } from "astro";
-
-interface Frontmatter {
-  section: string;
-  title: string;
-  description?: string;
-}
+import Card from "../components/Card.astro";
+import type { Frontmatter } from "../types";
+// import CodilityPosts from "../components/client/CodilityPosts";
+// import type { MarkdownInstance } from "astro";
 
 const allPosts = await Astro.glob<Frontmatter>("../pages/codility/*.md");
 
-const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatter>>>>(
-  (acc, post) => {
-    const section = post.frontmatter.section;
-    if (!(section in acc)) {
-      acc[section] = [];
-    }
-    acc[section].push(post);
-    return acc;
-  },
-  {}
-);
+// const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatter>>>>(
+//   (acc, post) => {
+//     const section = post.frontmatter.section;
+//     if (!(section in acc)) {
+//       acc[section] = [];
+//     }
+//     acc[section].push(post);
+//     return acc;
+//   },
+//   {}
+// );
+
+const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
 ---
 
 <Layout
@@ -31,5 +29,26 @@ const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatt
 >
   <H1>Javascript Solutions to Codility challenges</H1>
 
-  <CodilityPosts posts={allPosts} sections={sections} client:load />
+  <!-- <CodilityPosts posts={allPosts} sections={sections} client:load /> -->
+
+  <div class="filter-container mt-4 space-x-2">
+    <a
+      class={`inline-block cursor-pointer px-3 py-1 text-sm font-semibold ${"bg-lime-700 text-white"} rounded-full hover:bg-lime-800 hover:text-white`}
+    >
+      All
+    </a>
+    {
+      uniqueTags.map((tag) => (
+        <a
+          href={`/codility/tags/${tag}`}
+          class={`inline-block cursor-pointer rounded-full border border-lime-700 px-3 py-1 text-sm font-semibold text-lime-700 hover:bg-lime-800 hover:text-white disabled:cursor-default disabled:hover:bg-lime-700`}
+        >
+          {tag}
+        </a>
+      ))
+    }
+  </div>
+  <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+    {allPosts.map((post) => <Card {...post.frontmatter} url={post.url} />)}
+  </div>
 </Layout>

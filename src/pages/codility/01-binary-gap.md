@@ -3,6 +3,7 @@ layout: "../../layouts/MarkdownLayout.astro"
 section: "Lesson 1: Iterations"
 title: "Binary Gap"
 description: "A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N."
+tags: ["Iterations"]
 ---
 
 ### 100% score Javascript solution
