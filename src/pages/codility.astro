@@ -1,10 +1,10 @@
 ---
 import CodilityListLayout from "../layouts/CodilityListLayout.astro";
-import type { Frontmatter } from "../types";
+import { getCollection } from "astro:content";
 // import CodilityPosts from "../components/client/CodilityPosts";
 // import type { MarkdownInstance } from "astro";
 
-const allPosts = await Astro.glob<Frontmatter>("../pages/codility/*.md");
+const allPosts = await getCollection("codility");
 
 // const sections = allPosts.reduce<Record<string, Array<MarkdownInstance<Frontmatter>>>>(
 //   (acc, post) => {
@@ -18,7 +18,7 @@ const allPosts = await Astro.glob<Frontmatter>("../pages/codility/*.md");
 //   {}
 // );
 
-const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 ---
 
 <CodilityListLayout tags={uniqueTags} posts={allPosts} />

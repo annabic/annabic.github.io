@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/MarkdownLayout.astro"
 title: "Odd Occurrences"
 section: "Lesson 2: Arrays"
 tags: ["Arrays"]

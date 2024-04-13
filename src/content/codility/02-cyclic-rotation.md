@@ -1,5 +1,4 @@
 ---
-layout: "../../layouts/MarkdownLayout.astro"
 title: "Cyclic Rotation"
 section: "Lesson 2: Arrays"
 tags: ["Arrays"]
