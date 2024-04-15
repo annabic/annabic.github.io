@@ -13,7 +13,18 @@ import Link from "../components/typography/Link.astro";
       <li>
         Syntax podcast hosted by <b>Wes Bos</b> and <b>Scott Tolinski</b>
         <Link href="https://syntax.fm/" external> [https://syntax.fm/] </Link>
-        Some of favorite episodes: (TODO: add links)
+        <ul>
+          <li>
+            <Link href="https://www.youtube.com/watch?v=lYXYmcDjGMA" external>
+              AI Superpowers with Kevin Hou and Codeium
+            </Link>
+          </li>
+          <li>
+            <Link href="https://www.youtube.com/watch?v=GVY__H89Ysk" external
+              >Local AI models in JavaScript, with Xenova of Transformers.js</Link
+            >
+          </li>
+        </ul>
       </li>
     </ul>
   </section>
@@ -25,18 +36,25 @@ import Link from "../components/typography/Link.astro";
         <Link href="https://millo-l.github.io/WebRTC-implementation-method-Mesh-SFU-MCU/" external>
           [https://millo-l.github.io/WebRTC-implementation...]
         </Link>
+        <br />
         It's a great starting point for learning WebRTC. I used it as a reference for my own PoC audio
         chat that I had to create for a client.
       </li>
     </ul>
   </section>
   <section class="my-4">
-    <H2>Code style, development process</H2>
+    <H2>Code style, development process, good practises..</H2>
     <ul class="my-4 list-disc">
       <li>
         Conventional commit messages
         <Link href="https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13" external>
           [https://gist.github.com/qoomon/...]
+        </Link>
+      </li>
+      <li>
+        useState pitfalls series by <b>tkdodo</b>
+        <Link href="https://tkdodo.eu/blog/putting-props-to-use-state" external>
+          [https://tkdodo.eu/blog/putting-props-to-use-state]
         </Link>
       </li>
     </ul>
