@@ -2,11 +2,12 @@ import { defineConfig } from "astro/config";
 
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://annabic.github.io/",
-  integrations: [tailwind(), react()],
+  integrations: [tailwind(), react(), mdx()],
   markdown: {
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
