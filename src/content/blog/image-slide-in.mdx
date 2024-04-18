@@ -1,0 +1,78 @@
+---
+title: "Image Slide in: JavaScript 30 Day 13"
+description: "JS vs CSS Slide in effect on Scroll"
+tags: ["JavaScript 30", "CSS", "scroll"]
+date: 2024-04-18
+---
+import ImageSlideExample from "../../components/blog/ImageSlideExample.astro";
+
+Today's JavaScript task was to add slide-in animation effects on scroll. As you might already know, scroll events can fire at high rate. If you want to see it in action, add counter in console for it:
+```javascript
+window.addEventListener("scroll", () => console.count("event"));
+```
+Therefore, it's advised to throttle the scroll event.
+Luckily, Wes has already added debounce function. The final solution:
+```javascript
+    const sliderImages = document.querySelectorAll('.slide-in');
+
+    function checkSlide() {
+      sliderImages.forEach(sliderImage => {
+        // half way through the image
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+        // bottom of the image
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        const isNotScrolledPast = window.scrollY < imageBottom;
+        if (isHalfShown && isNotScrolledPast) {
+          sliderImage.classList.add('active');
+        } else {
+          sliderImage.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', debounce(checkSlide));
+```
+`active` class gets toggled, depending on calculations that determine image's position on the page.
+The effect has been achieved, but sometimes when you scroll quickly there will be a bit of delay.. 
+Can we improve this?
+
+## A side story
+
+A week ago Epic Web Conference took place in Park City, Utah. No, I didn't go there in person, that would be a loong trip from Latvia. However, they streamed it on YouTube, so I was able to watch it.
+There were some great talks! One that especially caught my attention was Una Kravet's [talk](https://www.youtube.com/live/Q0fwzlwTLWk?si=pfHDS2wrsX4gOapK&t=3680) on CSS & HTML.
+One of the topics - Scroll-driven animations. I mean those look really neat! Check [scroll-driven-aminations.style](https://scroll-driven-animations.style/) for some demos and examples.
+
+## CSS animations on scroll
+
+Back to today's task, when I saw the expected outcome, I instantly knew that I want to try out to achieve that with CSS. Disclaimer: [browser support](https://caniuse.com/?search=view-timeline) is not there yet. While we are waiting for other broswers to catch up, you can use [polyfill](https://github.com/flackr/scroll-timeline)
+
+
+```javascript
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%) scale(1);
+  }
+}
+
+.slide-in {
+  /* Create View Timeline */
+  view-timeline-name: --revealing-image;
+  view-timeline-axis: block;
+
+  /* Attach animation, linked to the  View Timeline */
+  animation: ease-in-out reveal both;
+  animation-timeline: --revealing-image;
+
+  /* Tweak range when effect should run*/
+  animation-range: entry 25% cover 30%;
+}
+```
+
+## Slide in example with CSS vs JS
+<ImageSlideExample />
