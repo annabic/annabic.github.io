@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { title, section, url, difficulty, description } = Astro.props;
+
+// TODO: get rid of svg, do it with css
 ---
 
 <article
@@ -42,7 +44,7 @@ const { title, section, url, difficulty, description } = Astro.props;
 
     <svg
       class={clsx(
-        "md:group-hover:translate-x-[40px] dark:text-opacity-20 md:group-hover:dark:text-opacity-60 md:group-hover:translate-y-[-10px] md:scale-[250%] absolute bottom-[-280px] right-[-280px] md:bottom-[-260px] md:right-[-340px] size-[800px] rounded-full p-5 transition-all",
+        "scale-[120%] md:group-hover:translate-x-[40px] dark:text-opacity-10 md:group-hover:dark:text-opacity-60 md:group-hover:translate-y-[-10px] md:scale-[250%] absolute bottom-[-280px] right-[-260px] md:bottom-[-260px] md:right-[-340px] size-[800px] rounded-full p-5 transition-all",
         {
           "text-lime-100 dark:text-lime-400 group-hover:text-lime-300": difficulty === "Easy",
           "text-amber-100 dark:text-yellow-400 group-hover:text-amber-300": difficulty === "Medium",
