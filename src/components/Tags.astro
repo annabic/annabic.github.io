@@ -1,35 +1,46 @@
 ---
+import clsx from "clsx";
+
 interface Props {
   tags: string[];
   withAll?: boolean;
 }
 
 const pathname = Astro.url.pathname;
-const isAllPage = pathname === "/codility/";
 
 const { tags, withAll } = Astro.props;
+
+const allTags = tags.map((tag) => {
+  return {
+    name: tag,
+    link: `/codility/tags/${tag}`,
+    isActive: pathname === `/codility/tags/${encodeURIComponent(tag)}`
+  };
+});
+
+if (withAll) {
+  allTags.unshift({
+    name: "All",
+    link: "/codility",
+    isActive: pathname === "/codility"
+  });
+}
 ---
 
-<div class="filter-container mt-4 space-x-2">
-  {
-    withAll && (
-      <a
-        href="/codility/"
-        class={`inline-block cursor-pointer px-3 py-1 text-sm font-semibold ${isAllPage ? "bg-lime-700 text-white" : "border border-lime-700 text-lime-700"} rounded-full hover:bg-lime-800 hover:text-white dark:border-lime-300 dark:text-white`}
-      >
-        All
-      </a>
-    )
-  }
-
-  {
-    tags.map((tag) => (
-      <a
-        href={`/codility/tags/${tag}`}
-        class={`${pathname === `/codility/tags/${tag}` ? "bg-lime-700 text-white" : ""} inline-block cursor-pointer rounded-full border border-lime-700 px-3 py-1 text-sm font-semibold text-lime-700 hover:bg-lime-800 hover:text-white disabled:cursor-default disabled:hover:bg-lime-700 dark:border-lime-300 dark:text-white`}
-      >
-        {tag}
-      </a>
-    ))
-  }
-</div>
+{
+  allTags.map(({ name, isActive, link }) => (
+    <a
+      href={link}
+      class={clsx(
+        "inline-block cursor-pointer rounded-full border-2 px-3 py-1 text-sm font-semibold hover:bg-stone-900 hover:text-white dark:hover:bg-stone-200 dark:hover:text-stone-950",
+        {
+          "border-stone-900 bg-stone-900 text-white dark:bg-stone-200 dark:text-stone-950":
+            isActive,
+          "border-stone-700 text-stone-700 dark:border-stone-200 dark:text-stone-50 ": !isActive
+        }
+      )}
+    >
+      {name}
+    </a>
+  ))
+}

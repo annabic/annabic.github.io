@@ -1,50 +1,62 @@
 ---
+import clsx from "clsx";
+import Difficulty from "./Difficulty.astro";
+
 interface Props {
   title: string;
   section: string;
   description?: string;
   url?: string;
+  difficulty: string;
 }
 
-const { title, section, url } = Astro.props;
+const { title, section, url, difficulty, description } = Astro.props;
 ---
 
-<div
-  class="mb-5 max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-950 dark:bg-lime-950"
+<article
+  class="group relative mb-5 overflow-hidden border border-stone-200 bg-stone-50 transition-all duration-500 hover:bg-stone-100 dark:border-gray-950 dark:bg-stone-900 dark:hover:bg-stone-900"
 >
-  <a href={url} class="max-h-30 min-h-20 rounded-t-lg bg-lime-200">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 250 60"
-      width="100%"
-      class="rounded-t-lg bg-lime-200 p-4 py-8"
-    >
-      <text
-        x="50%"
-        y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
-        font-family="monospace"
-        font-size="26px"
-        fill="#333333"
-      >
-        {title}
-      </text>
-    </svg>
-  </a>
-  <div class="p-5">
-    <a href={url}>
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-lime-50">
-        {title}
+  <a href={url} class="relative grid h-full w-full p-5">
+    <div class="z-10 flex min-h-10 w-full justify-between">
+      <h5 class="text-sm font-medium tracking-wide text-stone-700 dark:text-stone-50">
+        {section}
       </h5>
-    </a>
-    <p class="mb-3 font-bold text-gray-700 dark:text-lime-200">{section}</p>
-    <!-- <p class="mb-3 font-normal text-gray-700 dark:text-white">{description ?? ""}</p> -->
-    <a
-      class="inline-flex items-center rounded-lg bg-lime-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-lime-800 focus:ring-4 focus:ring-lime-200 dark:bg-lime-300 dark:text-black dark:hover:bg-lime-400 dark:focus:ring-lime-500"
-      href={url}
+      <Difficulty difficulty={difficulty} />
+    </div>
+
+    <div class="z-10 my-5 md:my-10 md:min-h-[100px]">
+      <h3 class="mb-2 text-xl font-bold text-stone-900 dark:text-stone-50">
+        {title}
+      </h3>
+
+      <p class="z-10 max-w-sm text-pretty pr-5 font-normal text-gray-700 dark:text-white">
+        {description ?? ""}
+      </p>
+    </div>
+
+    <button
+      class="z-10 inline-flex min-h-10 items-end self-end text-sm font-semibold text-stone-950 underline dark:text-stone-100"
     >
       Read more
-    </a>
-  </div>
-</div>
+    </button>
+
+    <svg
+      class={clsx(
+        "md:group-hover:translate-x-[40px] dark:text-opacity-20 md:group-hover:dark:text-opacity-60 md:group-hover:translate-y-[-10px] md:scale-[250%] absolute bottom-[-280px] right-[-280px] md:bottom-[-260px] md:right-[-340px] size-[800px] rounded-full p-5 transition-all",
+        {
+          "text-lime-100 dark:text-lime-400 group-hover:text-lime-300": difficulty === "Easy",
+          "text-amber-100 dark:text-yellow-400 group-hover:text-amber-300": difficulty === "Medium",
+          "text-red-100 dark:text-red-800 group-hover:text-red-300": difficulty === "Hard"
+        }
+      )}
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path stroke="currentColor" stroke-width="2" d="m10 16 4-4-4-4"></path>
+    </svg>
+  </a>
+</article>

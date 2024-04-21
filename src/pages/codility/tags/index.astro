@@ -10,5 +10,7 @@ const pageTitle = "Tag Index";
 
 <Layout title={pageTitle} description="Tag Index">
   <h1>{pageTitle}</h1>
-  <Tags tags={tags} withAll />
+  <div class="my-8 flex flex-wrap items-center justify-center gap-2">
+    <Tags tags={tags} withAll />
+  </div>
 </Layout>

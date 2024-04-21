@@ -13,18 +13,23 @@ const createBreadcrumbs = (path: string) => {
 const breadcrumbs = createBreadcrumbs(pathname);
 ---
 
-<nav aria-label="breadcrumbs" class="text-gray-500">
-  <ol class="flex">
+<nav aria-label="breadcrumbs ">
+  <ol class="flex text-sm tracking-wider">
     {
       breadcrumbs.map((breadcrumb, index) => (
         <li>
-          <a
-            href={breadcrumb.url}
-            class={`text-sm ${index !== breadcrumbs.length - 1 ? "text-lime-600 hover:text-lime-700 dark:text-lime-400 hover:dark:text-lime-200" : "text-gray-500 dark:text-gray-300"}`}
-            aria-current={index === breadcrumbs.length - 1 ? "page" : undefined}
-          >
-            {breadcrumb.name}
-          </a>
+          {index === breadcrumbs.length - 1 ? (
+            <span class="font-medium text-stone-700 dark:text-stone-400">{breadcrumb.name}</span>
+          ) : (
+            <a
+              href={breadcrumb.url}
+              class={
+                "font-medium text-lime-600 hover:text-lime-700 dark:text-lime-400 hover:dark:text-lime-200"
+              }
+            >
+              {breadcrumb.name}
+            </a>
+          )}
           {index !== breadcrumbs.length - 1 && <span class="mx-2">/</span>}
         </li>
       ))

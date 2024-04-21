@@ -1,15 +1,17 @@
 ---
 title: "Odd Occurrences"
 section: "Lesson 2: Arrays"
-tags: ["Arrays"]
+tags: ["Arrays", "Easy"]
+difficulty: "Easy"
+description: "Find the value that occurs in an odd number of elements"
 date: 2024-04-10
 ---
 
-A non-empty array A consisting of N integers is given. The array contains an odd number of elements, and each element of the array can be paired with another element that has the same value, except for one element that is left unpaired.
+## [100% score Javascript solution](https://app.codility.com/demo/results/training4H557K-94B/)
 
-### [100% score Javascript solution](https://app.codility.com/demo/results/training4H557K-94B/)
+Find the value that occurs in an odd number of elements.
 
-Straightforward solution - looping over the array and striking out the pairs found along the way, whatever is left over - the odd number
+Straightforward solution - looping over the array and striking out the pairs found along the way, whatever is left over - the odd number.
 
 ```javascript
 function solution(A) {

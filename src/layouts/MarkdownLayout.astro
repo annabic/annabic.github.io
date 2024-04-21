@@ -1,33 +1,21 @@
 ---
 import Layout from "./Layout.astro";
-import H1 from "../components/typography/H1.astro";
-import H2 from "../components/typography/H2.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
-import Tags from "../components/Tags.astro";
+import { formatLocaleDate } from "../utils/date";
 
 const { frontmatter } = Astro.props;
-
-const localeDate = frontmatter.date.toLocaleDateString("en-us", {
-  year: "numeric",
-  month: "short",
-  day: "numeric"
-});
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
   <Breadcrumbs />
-  <H1 class="my-4">{frontmatter.title}</H1>
-  <H2>{frontmatter.section}</H2>
-  <h3 class="text-md mt-4 text-gray-800 dark:text-lime-50">
-    {localeDate}
-  </h3>
-  <Tags tags={frontmatter.tags} />
+  <h1 class="mt-6 text-5xl font-bold leading-tight text-stone-950 dark:text-stone-50">
+    {frontmatter.title}
+  </h1>
+  <h2 class="mt-2 flex gap-2 text-sm tracking-wide text-gray-800 dark:text-stone-50">
+    <span>{formatLocaleDate(frontmatter.date as Date)}</span> — <span>{frontmatter.section}</span>
+  </h2>
   <div
-    class="prose mt-4
-    dark:prose-invert
-  prose-headings:underline prose-h1:text-xl
-  prose-h1:font-bold prose-p:text-justify prose-a:text-lime-600
-  prose-img:rounded-xl"
+    class="prose prose-stone mt-10 dark:prose-invert prose-h1:text-xl prose-h1:font-bold prose-p:text-justify prose-img:rounded-xl"
   >
     <slot />
   </div>

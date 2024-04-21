@@ -1,14 +1,15 @@
 ---
 title: "Binary Gap"
-description: "A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N."
+description: "Find the longest sequence of zeros in the binary representation of an integer"
 section: "Lesson 1: Iterations"
-tags: ["Iterations"]
+tags: ["Iterations", "Easy"]
+difficulty: "Easy"
 date: 2024-02-20
 ---
 
-### 100% score Javascript solution
+## 100% score Javascript solution
 
-A _binary gap_ within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.
+Find the longest sequence of zeros in the binary representation of an integer.
 
 ```javascript
 function solution(N) {

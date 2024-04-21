@@ -1,7 +1,9 @@
 ---
 title: "Cyclic Rotation"
 section: "Lesson 2: Arrays"
-tags: ["Arrays"]
+tags: ["Arrays", "Easy"]
+difficulty: "Easy"
+description: "Rotate an array to the right by a given number of steps"
 date: 2024-04-10
 ---
 

@@ -15,7 +15,8 @@ const codilityCollection = defineCollection({
     description: z.string().optional(),
     section: z.string(),
     tags: z.array(z.string()),
-    date: z.date()
+    date: z.date(),
+    difficulty: z.enum(["Easy", "Medium", "Hard"])
   })
 });
 
