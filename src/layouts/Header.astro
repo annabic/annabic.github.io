@@ -2,32 +2,22 @@
 import ThemeIcon from "../components/ThemeIcon.astro";
 ---
 
-<header class="fixed top-0 z-50 w-full">
-  <nav class="border-gray-200 bg-white dark:border-gray-700 dark:bg-black dark:text-white">
-    <div class="mx-auto flex max-w-screen-lg flex-wrap items-center justify-between p-4">
-      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse"> Home </a>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
-        <ul
-          class="mt-4 flex rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-black md:dark:bg-black"
-        >
+<header class="fixed top-0 z-50 w-full bg-white text-stone-950 dark:bg-black dark:text-white">
+  <nav>
+    <div
+      class="mx-auto flex max-w-screen-lg flex-wrap items-center gap-8 p-4 font-medium md:justify-between"
+    >
+      <a href="/">Home</a>
+      <div class="flex w-auto grow justify-between gap-8 md:grow-0">
+        <ul class="mt-0 flex items-center gap-8 p-0">
           <li>
-            <a
-              href="/codility"
-              class="block rounded px-3 py-2 md:bg-transparent md:p-0 md:dark:bg-transparent"
-              aria-current="page">Codility</a
-            >
+            <a href="/codility" class="block" aria-current="page">Codility</a>
           </li>
           <li>
-            <a
-              href="/resources"
-              class="block rounded px-3 py-2 md:bg-transparent md:p-0 md:dark:bg-transparent"
-              aria-current="page">Resources</a
-            >
-          </li>
-          <li>
-            <ThemeIcon />
+            <a href="/resources" class="block" aria-current="page">Resources</a>
           </li>
         </ul>
+        <ThemeIcon />
       </div>
     </div>
   </nav>
