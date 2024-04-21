@@ -17,8 +17,8 @@ const { title, section, url, difficulty, description } = Astro.props;
   class="group relative mb-5 overflow-hidden border border-stone-200 bg-stone-50 transition-all duration-500 hover:bg-stone-100 dark:border-gray-950 dark:bg-stone-900 dark:hover:bg-stone-900"
 >
   <a href={url} class="relative grid h-full w-full p-5">
-    <div class="z-10 flex min-h-10 w-full justify-between">
-      <h5 class="text-sm font-medium tracking-wide text-stone-700 dark:text-stone-50">
+    <div class="z-10 flex min-h-10 w-full justify-between gap-4">
+      <h5 class="text-balance text-sm font-medium tracking-wide text-stone-700 dark:text-stone-50">
         {section}
       </h5>
       <Difficulty difficulty={difficulty} />
