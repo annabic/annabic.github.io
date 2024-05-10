@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Tags from "../components/blog/Tags.astro";
+import H1 from "../components/typography/H1.astro";
+import Layout from "../layouts/Layout.astro";
+import { formatLocaleDate } from "../utils/date";
+
+interface Props {
+  posts: Array<CollectionEntry<"blog">>;
+  tags: string[];
+}
+
+const { posts, tags } = Astro.props;
+---
+
+<Layout title="Blog" description="Blog">
+  <H1>Blog</H1>
+
+  <div class="my-8 flex flex-wrap items-center gap-2">
+    <Tags tags={tags} withAll />
+  </div>
+
+  <div class="mt-4">
+    <ol class="relative">
+      {
+        posts.map((post) => (
+          <li class="mb-10">
+            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+              {formatLocaleDate(post.data.date)}
+            </time>
+            <a href={`/blog/${post.slug}`}>
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{post.data.title}</h3>
+            </a>
+            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+              {post.data.description}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</Layout>

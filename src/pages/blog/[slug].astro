@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import { formatLocaleDate } from "../../utils/date";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Tags from "../../components/blog/Tags.astro";
+import H1 from "../../components/typography/H1.astro";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const frontmatter = entry.data;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <Breadcrumbs />
+  <H1 class="my-4">{frontmatter.title}</H1>
+  <h3 class="text-md mt-4 text-gray-800 dark:text-lime-50">
+    <!-- TODO: date not recognized -->
+    {formatLocaleDate(frontmatter.date as Date)}
+  </h3>
+  <Tags tags={frontmatter.tags} />
+  <div
+    class="prose mt-4
+    dark:prose-invert
+  prose-headings:underline prose-h1:text-xl
+  prose-h1:font-bold prose-p:text-justify prose-a:text-lime-600
+  prose-img:rounded-xl"
+  >
+    <Content />
+  </div>
+</Layout>

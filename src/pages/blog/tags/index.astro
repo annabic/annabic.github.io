@@ -1,16 +1,16 @@
 ---
-import Tags from "../../../components/codility/Tags.astro";
-import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import Tags from "../../../components/blog/Tags.astro";
+import Layout from "../../../layouts/Layout.astro";
 
-const allPosts = await getCollection("codility");
+const allPosts = await getCollection("blog");
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 const pageTitle = "Tag Index";
 ---
 
 <Layout title={pageTitle} description="Tag Index">
   <h1>{pageTitle}</h1>
-  <div class="my-8 flex flex-wrap items-center justify-center gap-2">
+  <div class="my-8 flex flex-wrap items-center gap-2">
     <Tags tags={tags} withAll />
   </div>
 </Layout>
