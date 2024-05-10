@@ -1,40 +1,45 @@
 ---
-title: "Image Slide in: JavaScript 30 Day 13"
+title: "Image Slide in"
 description: "JS vs CSS Slide in effect on Scroll"
 tags: ["JavaScript 30", "CSS", "scroll"]
 date: 2024-04-18
 ---
+
 import ImageSlideExample from "../../components/blog/ImageSlideExample.astro";
 
 Today's JavaScript task was to add slide-in animation effects on scroll. As you might already know, scroll events can fire at high rate. If you want to see it in action, add counter in console for it:
+
 ```javascript
 window.addEventListener("scroll", () => console.count("event"));
 ```
+
 Therefore, it's advised to throttle the scroll event.
 Luckily, Wes has already added debounce function. The final solution:
+
 ```javascript
-    const sliderImages = document.querySelectorAll('.slide-in');
+const sliderImages = document.querySelectorAll(".slide-in");
 
-    function checkSlide() {
-      sliderImages.forEach(sliderImage => {
-        // half way through the image
-        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
-        // bottom of the image
-        const imageBottom = sliderImage.offsetTop + sliderImage.height;
-        const isHalfShown = slideInAt > sliderImage.offsetTop;
-        const isNotScrolledPast = window.scrollY < imageBottom;
-        if (isHalfShown && isNotScrolledPast) {
-          sliderImage.classList.add('active');
-        } else {
-          sliderImage.classList.remove('active');
-        }
-      });
+function checkSlide() {
+  sliderImages.forEach((sliderImage) => {
+    // half way through the image
+    const slideInAt = window.scrollY + window.innerHeight - sliderImage.height / 2;
+    // bottom of the image
+    const imageBottom = sliderImage.offsetTop + sliderImage.height;
+    const isHalfShown = slideInAt > sliderImage.offsetTop;
+    const isNotScrolledPast = window.scrollY < imageBottom;
+    if (isHalfShown && isNotScrolledPast) {
+      sliderImage.classList.add("active");
+    } else {
+      sliderImage.classList.remove("active");
     }
+  });
+}
 
-    window.addEventListener('scroll', debounce(checkSlide));
+window.addEventListener("scroll", debounce(checkSlide));
 ```
+
 `active` class gets toggled, depending on calculations that determine image's position on the page.
-The effect has been achieved, but sometimes when you scroll quickly there will be a bit of delay.. 
+The effect has been achieved, but sometimes when you scroll quickly there will be a bit of delay..
 Can we improve this?
 
 ## A side story
@@ -46,7 +51,6 @@ One of the topics - Scroll-driven animations. I mean those look really neat! Che
 ## CSS animations on scroll
 
 Back to today's task, when I saw the expected outcome, I instantly knew that I want to try out to achieve that with CSS. Disclaimer: [browser support](https://caniuse.com/?search=view-timeline) is not there yet. While we are waiting for other broswers to catch up, you can use [polyfill](https://github.com/flackr/scroll-timeline)
-
 
 ```javascript
 
@@ -75,4 +79,5 @@ Back to today's task, when I saw the expected outcome, I instantly knew that I w
 ```
 
 ## Slide in example with CSS vs JS
+
 <ImageSlideExample />

@@ -1,5 +1,5 @@
 ---
-title: "Key Sequence Detection: JavaScript 30 Day 12"
+title: "Key Sequence Detection"
 description: "JavaScript 30's Day 12 task solutions, inspired by the iconic Konami code"
 tags: ["JavaScript 30", "konami"]
 date: 2024-04-17
