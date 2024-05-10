@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import Tags from "../components/Tags.astro";
+
 import type { CollectionEntry } from "astro:content";
+import Card from "../components/codility/Card.astro";
+import Tags from "../components/codility/Tags.astro";
 
 interface Props {
   posts: Array<CollectionEntry<"codility">>;
