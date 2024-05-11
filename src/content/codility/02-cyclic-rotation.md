@@ -17,24 +17,24 @@ Even though performance is not not the focus on the assignment, I still like to 
 function solution(A, K) {
   const len = A.length;
   if (len < 1 || len > 100) {
-      return [];
+    return [];
   }
 
   const mod = K % len;
   if (mod === 0) {
-      return A;
+    return A;
   }
 
   const rotated = [];
   for (let i = 0; i < len; i++) {
-      const newPos = i + mod;
-      // deal with overflow values
-      if (newPos > len - 1) {
-          rotated[newPos - len] = A[i];
-      } else {
-          // shift by mod places
-          rotated[i + mod] = A[i];
-      }
+    const newPos = i + mod;
+    // deal with overflow values
+    if (newPos > len - 1) {
+      rotated[newPos - len] = A[i];
+    } else {
+      // shift by mod places
+      rotated[i + mod] = A[i];
+    }
   }
 
   return rotated;
