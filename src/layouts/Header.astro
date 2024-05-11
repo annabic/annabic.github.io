@@ -1,21 +1,29 @@
 ---
 import ThemeIcon from "../components/ThemeIcon.astro";
+
+const pages = [
+  { name: "Codility", link: "/codility" },
+  { name: "Resources", link: "/resources" }
+];
 ---
 
 <header class="fixed top-0 z-50 w-full bg-white text-stone-950 dark:bg-black dark:text-white">
   <nav>
     <div
-      class="mx-auto flex max-w-screen-lg flex-wrap items-center gap-8 p-4 font-medium md:justify-between"
+      class="mx-auto flex max-w-screen-lg flex-wrap items-center gap-4 p-4 font-medium sm:gap-8 md:justify-between"
     >
-      <a href="/">Home</a>
-      <div class="flex w-auto grow justify-between gap-8 md:grow-0">
-        <ul class="mt-0 flex items-center gap-8 p-0">
-          <li>
-            <a href="/codility" class="block" aria-current="page">Codility</a>
-          </li>
-          <li>
-            <a href="/resources" class="block" aria-current="page">Resources</a>
-          </li>
+      <a href="/" class="block hover:text-lime-600 dark:hover:text-lime-400">Home</a>
+      <div class="flex w-auto grow justify-between gap-4 sm:gap-8 md:grow-0">
+        <ul class="mt-0 flex items-center gap-4 p-0 sm:gap-8">
+          {
+            pages.map((link) => (
+              <li>
+                <a href={link.link} class="block0 hover:text-lime-600 dark:hover:text-lime-400">
+                  {link.name}
+                </a>
+              </li>
+            ))
+          }
         </ul>
         <ThemeIcon />
       </div>
