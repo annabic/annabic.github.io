@@ -1,0 +1,27 @@
+---
+const { prevPost, nextPost } = Astro.props;
+---
+
+<div class="my-md flex items-center justify-between">
+  {
+    !prevPost ? (
+      <p class="text-lg uppercase opacity-50">{`< Previous`}</p>
+    ) : (
+      <a
+        class="leading-wide block text-xl uppercase text-lime-600 no-underline hover:underline"
+        href={`/${prevPost.collection}/${prevPost.slug}/`}
+      >{`< Previous`}</a>
+    )
+  }
+
+  {
+    !nextPost ? (
+      <p class="text-lg uppercase opacity-50">{`Next >`}</p>
+    ) : (
+      <a
+        class="leading-wide block text-xl uppercase text-lime-600 no-underline hover:underline"
+        href={`/${nextPost.collection}/${nextPost.slug}/`}
+      >{`Next >`}</a>
+    )
+  }
+</div>

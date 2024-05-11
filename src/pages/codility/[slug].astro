@@ -1,19 +1,32 @@
 ---
 import { getCollection } from "astro:content";
+import PrevNext from "../../components/PrevNext.astro";
 import MarkdownLayout from "../../layouts/CodilityPostLayout.astro";
+import { sortCodility } from "../../utils/sortCodility";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("codility");
-  return blogEntries.map((entry) => ({
+  return blogEntries.sort(sortCodility).map((entry, i) => ({
     params: { slug: entry.slug },
-    props: { entry }
+    props: {
+      entry,
+      nextPost:
+        i + 1 === blogEntries.length // If the current post is the oldest
+          ? null
+          : blogEntries[i + 1],
+      prevPost:
+        i === 0 // If the current post is the newest
+          ? null
+          : blogEntries[i - 1]
+    }
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, prevPost, nextPost } = Astro.props;
 const { Content } = await entry.render();
 ---
 
 <MarkdownLayout frontmatter={entry.data} collection>
   <Content />
+  <PrevNext prevPost={prevPost} nextPost={nextPost} />
 </MarkdownLayout>

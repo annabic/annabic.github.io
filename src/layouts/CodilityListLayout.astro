@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import type { CollectionEntry } from "astro:content";
 import Card from "../components/codility/Card.astro";
 import Tags from "../components/codility/Tags.astro";
+import { sortCodility } from "../utils/sortCodility";
 
 interface Props {
   posts: Array<CollectionEntry<"codility">>;
@@ -28,6 +29,6 @@ const { posts, tags } = Astro.props;
   </div>
 
   <section class="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
-    {posts.map((post) => <Card {...post.data} url={`/codility/${post.slug}`} />)}
+    {posts.sort(sortCodility).map((post) => <Card {...post.data} url={`/codility/${post.slug}`} />)}
   </section>
 </Layout>
