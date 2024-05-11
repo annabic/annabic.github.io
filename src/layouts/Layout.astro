@@ -25,8 +25,9 @@ const { title, description } = Astro.props;
     -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; img-src 'self' unsplash.it fastly.picsum.photos picsum.photos; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+      content="default-src 'self'; img-src 'self' unsplash.it fastly.picsum.photos picsum.photos; script-src 'self' flackr.github.io 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
     />
+    <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
     <title>{title}</title>
     <ViewTransitions />
   </head>
