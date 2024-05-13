@@ -1,6 +1,8 @@
 name: Check Code Standarts
 
 on:
+  push:
+    branches: [main]
   pull_request:
     types: [opened, edited, synchronize, reopened]
 
