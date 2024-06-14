@@ -30,6 +30,13 @@ const { title, description } = Astro.props;
     <script src="https://flackr.github.io/scroll-timeline/dist/scroll-timeline.js"></script>
     <title>{title}</title>
     <ViewTransitions />
+
+    <script>
+      const webComponentsCSS = await import.meta.glob("../web-components/**/*.css", {
+        eager: true
+      });
+      const webComponentsJS = await import.meta.glob("../web-components/**/*.js", { eager: true });
+    </script>
   </head>
   <body class="min-h-screen text-stone-950 antialiased dark:bg-black dark:text-white">
     <Header />
